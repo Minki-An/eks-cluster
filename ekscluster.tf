@@ -24,8 +24,12 @@ module "eks" {
 
   eks_managed_node_group_defaults = {
     instance_types = ["t3.small"]
+    withAddonPolicies = {
+      imageBuilder = true
+      cloudWatch = true
+      autoScaler = true
   }
-
+}
   eks_managed_node_groups = {
     green = {
       min_size     = 1
@@ -34,6 +38,11 @@ module "eks" {
 
       instance_types = ["m5.large"]
       capacity_type  = "ON_DEMAND"
+    withAddonPolicies = {
+      imageBuilder = true
+      cloudWatch = true
+      autoScaler = true
+  }
     }
   }
 }
